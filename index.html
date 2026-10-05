@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Franck Nguimkeu — Ingénieur Data & IA</title>
+  <meta name="description" content="Franck Nguimkeu — Ingénieur Data & IA (ESIEE Paris). Je conçois des solutions Data & IA de bout en bout : Data Engineering, Machine Learning, IA générative & agents, MLOps et Cloud — du problème métier au système en production." />
+  <meta name="keywords" content="Franck Nguimkeu, Ingénieur Data & IA, Data Scientist, Machine Learning Engineer, MLOps, Data Engineer, AI Engineer, IA générative, GenAI, IA agentique, Big Data, Cloud, ESIEE Paris, portfolio" />
+  <meta name="author" content="Franck Nguimkeu" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#0b0b0e" />
+  <link rel="canonical" href="https://francknguimkeu.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Franck Nguimkeu — Portfolio" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:url" content="https://francknguimkeu.com/" />
+  <meta property="og:title" content="Franck Nguimkeu — Ingénieur Data & IA" />
+  <meta property="og:description" content="Du problème métier au système Data & IA en production. Data Engineering · ML & GenAI · AI Agents · MLOps · Cloud." />
+  <meta property="og:image" content="https://francknguimkeu.com/assets/img/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Franck Nguimkeu — Ingénieur Data & IA" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Franck Nguimkeu — Ingénieur Data & IA" />
+  <meta name="twitter:description" content="Du problème métier au système Data & IA en production." />
+  <meta name="twitter:image" content="https://francknguimkeu.com/assets/img/og-image.png" />
+
+  <!-- Structured data (Person) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Franck Nguimkeu Zafack",
+    "alternateName": "Franck Nguimkeu",
+    "jobTitle": "Ingénieur Data & IA",
+    "url": "https://francknguimkeu.com/",
+    "image": "https://francknguimkeu.com/assets/img/og-image.png",
+    "email": "franck.intern@gmail.com",
+    "alumniOf": { "@type": "CollegeOrUniversity", "name": "ESIEE Paris" },
+    "knowsAbout": ["Data Engineering", "Machine Learning", "IA générative", "IA agentique", "MLOps", "Cloud", "Big Data", "Deep Learning", "NLP", "Computer Vision"],
+    "sameAs": ["https://github.com/franckdollar916", "https://www.linkedin.com/in/franck-nguimkeu"]
+  }
+  </script>
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-weight='700'>F</text></svg>" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css?v=13" />
+</head>
+<body>
+  <!-- Animated dotted / gradient background -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div class="orb orb-1" aria-hidden="true"></div>
+  <div class="orb orb-2" aria-hidden="true"></div>
+
+  <!-- Progress bar -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__brand">
+      <span class="nav__dot"></span>
+      <span class="nav__name">Franck Nguimkeu</span>
+      <span class="nav__role" data-i18n="nav.role">Ingénieur Data &amp; IA</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Navigation principale">
+      <a href="#about" data-i18n="nav.about">Profil</a>
+      <a href="#experience" data-i18n="nav.exp">Expériences</a>
+      <a href="#projects" data-i18n="nav.projects">Projets</a>
+      <a href="#skills" data-i18n="nav.skills">Compétences</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="toggle" id="langToggle" aria-label="Changer de langue" title="FR / EN">
+        <span class="toggle__label" id="langLabel">FR</span>
+      </button>
+      <button class="toggle" id="themeToggle" aria-label="Changer de thème" title="Thème clair / sombre">
+        <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      </button>
+      <a href="#contact" class="btn btn--pill nav__cta" data-i18n="nav.cta">Me contacter</a>
+      <button class="nav__burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero">
+      <!-- Cinematic background: optional video (drop assets/video/hero.mp4) + generative AI canvas fallback -->
+      <div class="hero__media" aria-hidden="true">
+        <video class="hero__video" id="heroVideo" muted loop playsinline preload="auto" poster="assets/img/hero-poster.jpg">
+          <source id="heroVideoSrc" src="assets/video/hero.mp4" type="video/mp4" />
+        </video>
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero__overlay"></div>
+        <div class="hero__grid-lines"></div>
+      </div>
+
+      <div class="hero__inner reveal">
+        <div class="hero__badge">
+          <span class="pulse"></span>
+          <span data-i18n="hero.status">Disponible immédiatement · stage de fin d'études (6 mois) · ouvert au CDI</span>
+        </div>
+
+        <h1 class="hero__title">
+          <span data-i18n="hero.l1">Du problème métier au système</span>
+          <span class="ital grad" data-i18n="hero.l2">Data &amp; IA en production.</span>
+        </h1>
+
+        <p class="hero__sub" data-i18n="hero.sub">
+          Je conçois des solutions Data &amp; IA de bout en bout : compréhension du besoin, ingénierie des données, ML &amp; IA générative, industrialisation, déploiement cloud, monitoring et accompagnement des utilisateurs.
+        </p>
+
+        <div class="hero__skills" aria-label="Domaines d'expertise">
+          <span>Data Engineering</span><span>ML &amp; GenAI</span><span>AI Agents</span><span>MLOps</span><span>Cloud</span>
+        </div>
+
+        <div class="hero__cta">
+          <a href="#projects" class="btn btn--primary" data-i18n="hero.cta1">Découvrir mes réalisations</a>
+          <a href="assets/cv/CV_Franck_Nguimkeu_FR.pdf" target="_blank" rel="noopener" class="btn btn--ghost" id="cvLink">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+            <span data-i18n="hero.cta2">Télécharger mon CV</span>
+          </a>
+        </div>
+
+        <div class="hero__meta">
+          <span>📍 Île-de-France, France</span>
+          <span class="dot-sep"></span>
+          <a href="https://github.com/franckdollar916" target="_blank" rel="noopener">GitHub</a>
+          <span class="dot-sep"></span>
+          <a href="#contact" class="js-linkedin">LinkedIn</a>
+        </div>
+      </div>
+
+      <ol class="hero__phases" id="heroPhases" aria-hidden="true">
+        <li><span class="hp-line"></span><span class="hp-txt"><b>01</b> <span data-i18n="phase.1">Données brutes</span></span></li>
+        <li><span class="hp-line"></span><span class="hp-txt"><b>02</b> <span data-i18n="phase.2">Structuration</span></span></li>
+        <li><span class="hp-line"></span><span class="hp-txt"><b>03</b> <span data-i18n="phase.3">Pipeline</span></span></li>
+        <li><span class="hp-line"></span><span class="hp-txt"><b>04</b> <span data-i18n="phase.4">Convergence</span></span></li>
+        <li><span class="hp-line"></span><span class="hp-txt"><b>05</b> <span data-i18n="phase.5">En production</span></span></li>
+      </ol>
+
+      <a href="#about" class="hero__scroll" aria-label="Défiler vers le bas">
+        <span class="hero__scroll-txt" data-i18n="hero.scroll">Découvrir</span>
+        <span class="hero__scroll-line"></span>
+      </a>
+    </section>
+
+    <!-- ============ STATS ============ -->
+    <section class="stats" aria-label="Chiffres clés">
+      <div class="stats__head reveal">
+        <span class="eyebrow" data-i18n="stats.eyebrow">Mon dernier projet — SFR · IA-Audit Radio 5G</span>
+        <a href="#experience" class="stats__link" data-i18n="stats.link">Voir l'expérience →</a>
+      </div>
+      <div class="stats__grid">
+        <div class="stat reveal">
+          <span class="stat__num" data-count="30000" data-suffix="">0</span>
+          <span class="stat__label" data-i18n="stat.cells">cellules 5G auditées</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__num" data-count="1.5" data-decimals="1" data-suffix=" Md">0</span>
+          <span class="stat__label" data-i18n="stat.measures">mesures terrain fusionnées</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__num" data-count="100" data-suffix=" %">0</span>
+          <span class="stat__label" data-i18n="stat.software">logiciel — 0 module matériel</span>
+        </div>
+        <div class="stat reveal">
+          <span class="stat__num" data-count="15" data-prefix="~" data-suffix=" min">0</span>
+          <span class="stat__label" data-i18n="stat.audit">audit complet du parc</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section about" id="about">
+      <div class="section__head reveal">
+        <span class="eyebrow" data-i18n="about.eyebrow">01 — Profil</span>
+        <h2 class="section__title">
+          <span data-i18n="about.title1">Derrière l'ingénieur,</span>
+          <span class="ital" data-i18n="about.title2">l'humain.</span>
+        </h2>
+      </div>
+
+      <div class="about__grid">
+        <div class="about__text reveal">
+          <blockquote class="about__quote" data-i18n="about.quote">« Je crois qu'avec du courage, du travail et de la détermination, aucun problème n'est hors de portée. »</blockquote>
+          <p data-i18n="about.bio1">Derrière l'ingénieur, je suis <strong>Franck Nguimkeu Zafack</strong>, 24 ans. Passionné d'informatique depuis l'enfance, mordu de résolution de problèmes et de polyvalence.</p>
+          <p data-i18n="about.bio2">Très tôt, j'ai compris que je ne pourrais pas tout être à la fois — ingénieur, pilote, médecin… Alors j'ai fait un pari : faire de l'informatique mon <strong>super-pouvoir</strong>, celui qui me permet d'intervenir dans tous les domaines qui me passionnent — santé, finance, transport, télécoms, tech. Amoureux de l'Intelligence Artificielle, c'est vers elle que je me suis tourné pour acquérir les compétences qui résolvent les vrais problèmes de notre monde.</p>
+        </div>
+
+        <div class="about__cards">
+          <div class="mini-card reveal">
+            <h3 data-i18n="about.soft">Soft skills</h3>
+            <div class="chips">
+              <span data-i18n="soft.1">Passionné</span><span data-i18n="soft.2">Rigoureux</span><span data-i18n="soft.3">Efficace</span><span data-i18n="soft.4">Attentif</span><span data-i18n="soft.5">Structuré</span><span data-i18n="soft.6">Autonome</span><span data-i18n="soft.7">Collaboratif</span><span data-i18n="soft.8">Curieux</span><span data-i18n="soft.9">Force de proposition</span>
+            </div>
+          </div>
+          <div class="mini-card reveal">
+            <h3 data-i18n="about.interests">Ce qui me fait vibrer</h3>
+            <div class="chips">
+              <span data-i18n="int.1">Veille technologique</span><span data-i18n="int.2">Écosystème IA</span><span data-i18n="int.3">LLM &amp; IA agentique</span><span data-i18n="int.4">Innovation</span>
+            </div>
+            <p class="mini-card__note" data-i18n="about.interests_txt">Chaque jour, je suis les grandes figures de l'IA (Sam Altman, Dario Amodei, Elon Musk…) et tout ce qui bouge dans l'écosystème.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section experience" id="experience">
+      <div class="section__head reveal">
+        <span class="eyebrow" data-i18n="exp.eyebrow">02 — Expériences</span>
+        <h2 class="section__title">
+          <span data-i18n="exp.title1">Là où j'ai déjà</span>
+          <span class="ital" data-i18n="exp.title2">créé de l'impact.</span>
+        </h2>
+      </div>
+
+      <div class="timeline">
+        <!-- SFR -->
+        <article class="tl-item reveal">
+          <div class="tl-item__marker"></div>
+          <div class="tl-item__head">
+            <div class="tl-item__id">
+              <img class="tl-logo" src="assets/img/logos/sfr.webp" alt="Logo SFR" loading="lazy" />
+              <div>
+                <h3 class="tl-item__role" data-i18n="exp.sfr.role">Ingénieur Big Data &amp; IA — Stage</h3>
+                <span class="tl-item__org">SFR · Altice France</span>
+              </div>
+            </div>
+            <span class="tl-item__date">Fév. 2026 — Août 2026 · Paris</span>
+          </div>
+          <p class="tl-item__punch" data-i18n="exp.sfr.punch">D'un besoin métier à une solution Big Data &amp; IA déployée sur le cloud et adoptée par les équipes.</p>
+          <p class="tl-item__tag" data-i18n="exp.sfr.tag">Division Mobile Engineering — « IA-Audit Radio » : audit automatique d'orientation d'antennes 5G</p>
+          <div class="tl-chain" aria-label="Chaîne de bout en bout">
+            <span data-i18n="chain.1">Analyse</span><span data-i18n="chain.2">Data processing</span><span data-i18n="chain.3">Modélisation</span><span data-i18n="chain.4">API</span><span data-i18n="chain.5">Industrialisation</span><span data-i18n="chain.6">Cloud</span><span data-i18n="chain.7">Monitoring</span><span data-i18n="chain.8">Formation</span>
+          </div>
+          <ul class="tl-item__list">
+            <li data-i18n="exp.sfr.b1">Conçu et industrialisé un outil détectant les défauts d'orientation (azimut / tilt) de <strong>~30 000 cellules 5G</strong> — une alternative <strong>100 % logicielle</strong> au module matériel dédié (~250 €/unité), réutilisant les données déjà collectées.</li>
+            <li data-i18n="exp.sfr.b2">Développé un pipeline Big Data de bout en bout (<strong>DuckDB</strong>) fusionnant <strong>~1,5 milliard de mesures</strong> et 3 sources hétérogènes — audit complet du parc en <strong>~15 min</strong>.</li>
+            <li data-i18n="exp.sfr.b3">Estimé l'orientation par statistique directionnelle (triangulation de 3 méthodes + score de confiance) et métriques de forme (IoU) ; comparé des modèles de deep learning (auto-encodeur, CNN), écartés en prod au profit d'une méthode plus robuste et explicable.</li>
+            <li data-i18n="exp.sfr.b4">Détecté <strong>~4 100 anomalies réelles (13,8 % du parc)</strong> à corriger en priorité — ciblage des interventions terrain, plusieurs M€ de coûts potentiellement évités, sur un audit rejouable chaque mois.</li>
+            <li data-i18n="exp.sfr.b5">Industrialisé : conteneurisation <strong>Docker</strong> (API, frontend, batch), déploiement <strong>GCP</strong>, app web <strong>FastAPI / React</strong>, formation des équipes internes.</li>
+          </ul>
+          <div class="chips">
+            <span>DuckDB</span><span>Python</span><span>Docker</span><span>GCP</span><span>FastAPI</span><span>React</span><span>Deep Learning</span><span>Géospatial</span>
+          </div>
+          <button class="ctx-toggle" type="button" aria-expanded="false">
+            <svg class="ctx-toggle__ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            <span data-i18n="exp.ctxbtn">Comprendre le contexte</span>
+          </button>
+          <div class="ctx-panel">
+            <p data-i18n="exp.sfr.ctx">La mission d'un opérateur télécom : offrir une <strong>qualité de service</strong> irréprochable — ce qui passe par une bonne <strong>couverture radio</strong> sur tout le territoire, assurée par des <strong>milliers de pylônes</strong>. Chaque pylône porte <strong>3 antennes</strong>, orientées pour couvrir chacune ~<strong>120°</strong>. Problème : sur le terrain, la couverture réelle ne correspond pas toujours à ce qui a été <strong>planifié</strong> en interne — il faut donc vérifier cette conformité. Or déployer des équipes partout, en permanence, est impossible ; et les <strong>modules matériels</strong> proposés par les constructeurs, multipliés par des <strong>milliers de sites</strong>, représentent des <strong>millions d'euros</strong>. D'où ma solution : un <strong>outil d'IA</strong> qui analyse <em>tout le parc 5G de SFR</em>, vérifie la conformité de chaque site et fait remonter en priorité ceux qui présentent le plus fort risque d'inadéquation.</p>
+          </div>
+          <button class="ctx-toggle" type="button" aria-expanded="false">
+            <svg class="ctx-toggle__ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            <span data-i18n="exp.demoBtn">Images de la solution</span>
+          </button>
+          <div class="ctx-panel media-panel" data-media="sfr"></div>
+        </article>
+
+        <!-- Edu-TSAI -->
+        <article class="tl-item reveal">
+          <div class="tl-item__marker"></div>
+          <div class="tl-item__head">
+            <div class="tl-item__id">
+              <img class="tl-logo" src="assets/img/logos/edu-tsai.png" alt="Logo Edu-TSAI" loading="lazy" />
+              <div>
+                <h3 class="tl-item__role" data-i18n="exp.edu.role">Co-fondateur &amp; CTO</h3>
+                <span class="tl-item__org">Edu-TSAI</span>
+              </div>
+            </div>
+            <span class="tl-item__date" data-i18n="exp.edu.date">Depuis 2025</span>
+          </div>
+          <p class="tl-item__tag" data-i18n="exp.edu.tag">Startup EdTech propulsée par l'IA</p>
+          <ul class="tl-item__list">
+            <li data-i18n="exp.edu.b1">Co-fondé et pilote la vision technique et produit d'une plateforme éducative propulsée par l'IA.</li>
+            <li data-i18n="exp.edu.b2"><strong>Lauréat Orange Jeunes Talents</strong> (2 prix + Prix spécial du jury) et <strong>Bourse Sisley Jeunes Créateurs 2026</strong>.</li>
+            <li data-i18n="exp.edu.b3">Défini l'architecture produit et la stratégie de déploiement cloud (crédits startup, gouvernance technique).</li>
+          </ul>
+          <div class="chips">
+            <span data-i18n="chip.award">🏆 Doublement primé</span><span>IA / LLM</span><span>Cloud</span><span>Product</span>
+          </div>
+          <button class="ctx-toggle" type="button" aria-expanded="false">
+            <svg class="ctx-toggle__ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            <span data-i18n="exp.ctxbtn">Comprendre le contexte</span>
+          </button>
+          <div class="ctx-panel">
+            <p data-i18n="exp.edu.ctxi"><strong>Edu-TSAI</strong> est une plateforme éducative propulsée par l'IA, dédiée à l'éducation des <strong>enfants autistes</strong> et à l'accompagnement des acteurs autour d'eux : <strong>enseignants, AESH</strong> (Accompagnants d'Élèves en Situation de Handicap) et <strong>parents</strong>.</p>
+            <p data-i18n="exp.edu.ctxp"><strong>Le problème :</strong> le système éducatif peine à répondre concrètement aux besoins de ces enfants, faute de moyens adaptés. Chaque enfant autiste est unique — besoins, sensibilités, mode de communication — et l'enseignant doit personnaliser chaque support. Un vrai calvaire avec 5 à 10 enfants à charge.</p>
+            <p class="ctx-panel__sub" data-i18n="exp.edu.ctxr">Nos réponses :</p>
+            <ul class="ctx-list">
+              <li data-i18n="exp.edu.ctx1"><strong>Personnalisation automatique</strong> — la plateforme part du profil de chaque enfant pour adapter les supports : simple, rapide, efficace.</li>
+              <li data-i18n="exp.edu.ctx2"><strong>Synergie des acteurs</strong> — enseignant, AESH et parent partagent enfin un espace collaboratif et le même niveau d'information (là où les réunions communes n'avaient lieu qu'1 à 2 fois par an… parfois jamais).</li>
+              <li data-i18n="exp.edu.ctx3"><strong>Tableau de bord</strong> — mesurer les progrès, voir ce qui marche, ce qu'il faut arrêter ou améliorer.</li>
+              <li data-i18n="exp.edu.ctx4"><strong>Dossier de suivi</strong> — fini le dossier papier à retransmettre à chaque changement de classe, dans un contexte de pénurie criante d'AESH.</li>
+            </ul>
+          </div>
+          <button class="ctx-toggle" type="button" aria-expanded="false">
+            <svg class="ctx-toggle__ico" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            <span data-i18n="exp.demoBtn">Images de la solution</span>
+          </button>
+          <div class="ctx-panel media-panel" data-media="edu"></div>
+        </article>
+
+        <!-- Binghana -->
+        <article class="tl-item reveal">
+          <div class="tl-item__marker"></div>
+          <div class="tl-item__head">
+            <div class="tl-item__id">
+              <span class="tl-logo tl-logo--mono" aria-label="Binghana Ltd" role="img">B</span>
+              <div>
+                <h3 class="tl-item__role">Data Scientist</h3>
+                <span class="tl-item__org">Binghana Ltd</span>
+              </div>
+            </div>
+            <span class="tl-item__date">2024</span>
+          </div>
+          <p class="tl-item__tag" data-i18n="exp.bin.tag">FinTech — Mobile Money &amp; inclusion financière</p>
+          <ul class="tl-item__list">
+            <li data-i18n="exp.bin.b1">Développé un modèle <strong>NLP</strong> de classification automatique des transactions Mobile Money (revenus / dépenses) à partir de SMS transactionnels — cœur d'une app de gestion de finances personnelles.</li>
+            <li data-i18n="exp.bin.b2">Nettoyé et enrichi des milliers de SMS (data cleaning, feature engineering) pour fiabiliser la catégorisation.</li>
+            <li data-i18n="exp.bin.b3">Contribué à un produit d'inclusion financière pour les utilisateurs Mobile Money en Afrique.</li>
+          </ul>
+          <div class="chips">
+            <span>NLP</span><span>Python</span><span>Classification</span><span>Feature Engineering</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section projects" id="projects">
+      <div class="section__head reveal">
+        <span class="eyebrow" data-i18n="proj.eyebrow">03 — Projets</span>
+        <h2 class="section__title">
+          <span data-i18n="proj.title1">Des projets qui</span>
+          <span class="ital" data-i18n="proj.title2">poussent la technique.</span>
+        </h2>
+      </div>
+
+      <div class="proj-grid">
+        <article class="proj-card reveal">
+          <div class="proj-card__top">
+            <span class="proj-card__year">2025</span>
+            <span class="proj-card__ico">🚗</span>
+          </div>
+          <h3 data-i18n="proj.carla.t">Agent de conduite autonome — CARLA</h3>
+          <p data-i18n="proj.carla.p">Agent intégrant LLM, VLM et RAG pour la compréhension contextuelle, la détection d'obstacles et la prise de décision en environnement dynamique — une logique proche des systèmes d'IA agentique.</p>
+          <div class="chips">
+            <span>LLM</span><span>VLM</span><span>RAG</span><span>Computer Vision</span><span>CARLA</span>
+          </div>
+        </article>
+
+        <article class="proj-card reveal">
+          <div class="proj-card__top">
+            <span class="proj-card__year">2025</span>
+            <span class="proj-card__ico">⚙️</span>
+          </div>
+          <h3 data-i18n="proj.devops.t">Application cloud-native &amp; pipeline CI/CD</h3>
+          <p data-i18n="proj.devops.p">API FastAPI + base PostgreSQL conteneurisée (Docker), déploiement automatisé via GitHub Actions et orchestration cloud, dans une démarche DevOps de bout en bout.</p>
+          <div class="chips">
+            <span>FastAPI</span><span>Docker</span><span>PostgreSQL</span><span>CI/CD</span><span>GitHub Actions</span>
+          </div>
+        </article>
+
+        <article class="proj-card reveal">
+          <div class="proj-card__top">
+            <span class="proj-card__year">2025</span>
+            <span class="proj-card__ico">⚡</span>
+          </div>
+          <h3 data-i18n="proj.energy.t">Prédiction de consommation énergétique</h3>
+          <p data-i18n="proj.energy.p">Modèle ML entraîné sur 100 K+ bâtiments (structuration, feature engineering, évaluation par métriques d'erreur standardisées). Compétition Kaggle.</p>
+          <div class="chips">
+            <span>Machine Learning</span><span>Régression</span><span>Feature Engineering</span><span>Kaggle</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section skills" id="skills">
+      <div class="section__head reveal">
+        <span class="eyebrow" data-i18n="skills.eyebrow">04 — Compétences</span>
+        <h2 class="section__title">
+          <span data-i18n="skills.title1">Ma boîte à</span>
+          <span class="ital" data-i18n="skills.title2">outils.</span>
+        </h2>
+      </div>
+
+      <div class="skills__grid">
+        <div class="skill-group reveal">
+          <h3 data-i18n="skills.g1">IA &amp; Machine Learning</h3>
+          <div class="chips chips--lg">
+            <span>Deep Learning</span><span>CNN / RNN</span><span>Transformers</span><span>Auto-encodeurs</span><span>LLM</span><span>RAG</span><span>IA agentique</span><span>NLP</span><span>Computer Vision</span><span>PyTorch</span><span>TensorFlow</span><span>Scikit-learn</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <h3 data-i18n="skills.g2">Big Data &amp; Data Engineering</h3>
+          <div class="chips chips--lg">
+            <span>DuckDB</span><span>Pipelines</span><span>Données géospatiales</span><span>GeoPandas</span><span>Pandas</span><span>NumPy</span><span>SQL</span><span>Feature Engineering</span><span>EDA</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <h3 data-i18n="skills.g3">MLOps &amp; Cloud</h3>
+          <div class="chips chips--lg">
+            <span>GCP</span><span>Cloud Run</span><span>AWS</span><span>Docker</span><span>CI/CD</span><span>GitHub Actions</span><span>FastAPI</span><span>React</span><span>Streamlit</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <h3 data-i18n="skills.g4">Langages</h3>
+          <div class="chips chips--lg">
+            <span>Python</span><span>SQL</span><span>R</span><span>C / C++</span><span>Java</span>
+          </div>
+        </div>
+        <div class="skill-group reveal">
+          <h3 data-i18n="skills.g5">Data Viz &amp; BI</h3>
+          <div class="chips chips--lg">
+            <span>Power BI</span><span>Tableau</span><span>Plotly</span><span>Seaborn</span><span>Matplotlib</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EDUCATION ============ -->
+    <section class="section edu" id="education">
+      <div class="section__head reveal">
+        <span class="eyebrow" data-i18n="edu.eyebrow">05 — Parcours</span>
+        <h2 class="section__title">
+          <span data-i18n="edu.title1">Formation &amp;</span>
+          <span class="ital" data-i18n="edu.title2">certifications.</span>
+        </h2>
+      </div>
+
+      <div class="edu__grid">
+        <div class="edu__col reveal">
+          <h3 class="edu__colhead" data-i18n="edu.formation">Formation</h3>
+          <div class="edu-item">
+            <span class="edu-item__date">2024 — 2027</span>
+            <div>
+              <h4 data-i18n="edu.f1t">Cycle Ingénieur — Data Science &amp; IA</h4>
+              <p>ESIEE Paris · Noisy-Champs, FR</p>
+            </div>
+          </div>
+          <div class="edu-item">
+            <span class="edu-item__date">2023 — 2024</span>
+            <div>
+              <h4 data-i18n="edu.f2t">Master 1 IA &amp; Big Data — Mention Bien</h4>
+              <p>Keyce Informatique &amp; IA · Yaoundé, CM</p>
+            </div>
+          </div>
+          <div class="edu-item">
+            <span class="edu-item__date">2019 — 2023</span>
+            <div>
+              <h4 data-i18n="edu.f3t">Licence Informatique</h4>
+              <p>Université de Dschang · CM</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="edu__col reveal">
+          <h3 class="edu__colhead" data-i18n="edu.certs">Certifications</h3>
+          <div class="edu-item">
+            <span class="edu-item__badge">IBM</span>
+            <div><h4>IBM Data Science Professional</h4><p data-i18n="edu.inprogress">En cours</p></div>
+          </div>
+          <div class="edu-item">
+            <span class="edu-item__badge">ML</span>
+            <div><h4>Machine Learning Specialization</h4><p data-i18n="edu.inprogress">En cours</p></div>
+          </div>
+
+          <h3 class="edu__colhead edu__colhead--mt" data-i18n="edu.langs">Langues</h3>
+          <div class="lang-row">
+            <span class="lang-pill"><strong>FR</strong> <span data-i18n="edu.native">Langue maternelle</span></span>
+            <span class="lang-pill"><strong>EN</strong> B2</span>
+            <span class="lang-pill"><strong>ES</strong> A2</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PHOTOS ============ -->
+    <section class="section photos" id="photos">
+      <div class="section__head reveal">
+        <span class="eyebrow" data-i18n="photos.eyebrow">En images</span>
+        <h2 class="section__title">
+          <span data-i18n="photos.title1">Quelques</span>
+          <span class="ital" data-i18n="photos.title2">moments.</span>
+        </h2>
+      </div>
+    </section>
+
+    <div class="marquee reveal" aria-label="Galerie photos">
+      <div class="marquee__track" id="marqueeTrack">
+        <figure class="photo-slide">
+          <div class="photo-slide__ph"><span>🏆</span></div>
+          <img src="assets/img/photo-1.jpg" alt="Remise de prix Orange Jeunes Talents" loading="lazy" onerror="this.remove()" />
+          <figcaption>🏆 Orange Jeunes Talents</figcaption>
+        </figure>
+        <figure class="photo-slide">
+          <div class="photo-slide__ph"><span>🏆</span></div>
+          <img src="assets/img/photo-2.jpg" alt="Bourse Sisley Jeunes Créateurs 2026" loading="lazy" onerror="this.remove()" />
+          <figcaption>🏆 Bourse Sisley 2026</figcaption>
+        </figure>
+        <figure class="photo-slide">
+          <div class="photo-slide__ph"><span>🏢</span></div>
+          <img src="assets/img/photo-3.jpg" alt="En entreprise chez SFR" loading="lazy" onerror="this.remove()" />
+          <figcaption>🏢 Chez SFR</figcaption>
+        </figure>
+        <figure class="photo-slide">
+          <div class="photo-slide__ph"><span>🎓</span></div>
+          <img src="assets/img/photo-4.jpg" alt="ESIEE Paris" loading="lazy" onerror="this.remove()" />
+          <figcaption>🎓 ESIEE Paris</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section contact" id="contact">
+      <div class="contact__card reveal">
+        <span class="eyebrow" data-i18n="contact.eyebrow">06 — Contact</span>
+        <h2 class="contact__title">
+          <span data-i18n="contact.title1">On construit votre prochain</span>
+          <span class="ital grad" data-i18n="contact.title2">produit Data / IA ?</span>
+        </h2>
+        <p class="contact__sub" data-i18n="contact.sub">Disponible pour un stage de fin d'études de 6 mois dès février 2026, ouvert au CDI. Intéressé par les environnements exigeants où la donnée sert vraiment les décisions.</p>
+
+        <div class="contact__links">
+          <a href="mailto:franck.intern@gmail.com" class="btn btn--primary">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 6 10-6"/></svg>
+            franck.intern@gmail.com
+          </a>
+          <a href="tel:+33758200941" class="btn btn--ghost">+33 7 58 20 09 41</a>
+          <a href="https://github.com/franckdollar916" target="_blank" rel="noopener" class="btn btn--ghost">GitHub</a>
+          <a href="#" class="btn btn--ghost js-linkedin">LinkedIn</a>
+        </div>
+        <p class="contact__loc">📍 Île-de-France, France</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 — Franck Nguimkeu.</span>
+    <span data-i18n="footer.rights">Tous droits réservés.</span>
+    <a href="#top" class="footer__top" data-i18n="footer.top">Haut de page ↑</a>
+  </footer>
+
+  <!-- Lightbox (photo viewer) -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visionneuse photo">
+    <button class="lightbox__close" aria-label="Fermer">✕</button>
+    <button class="lightbox__prev" aria-label="Photo précédente">‹</button>
+    <div class="lightbox__stage">
+      <img class="lightbox__img" src="" alt="" />
+      <div class="lightbox__bar">
+        <span class="lightbox__cap"></span>
+        <span class="lightbox__counter"></span>
+      </div>
+    </div>
+    <button class="lightbox__next" aria-label="Photo suivante">›</button>
+  </div>
+
+  <script src="assets/img/gallery/photos.js?v=3"></script>
+  <script src="data-hero.js?v=4"></script>
+  <script src="script.js?v=17"></script>
+</body>
+</html>
