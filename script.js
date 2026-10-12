@@ -139,7 +139,7 @@ function setLang(lang) {
   document.getElementById("langLabel").textContent = lang === "en" ? "EN" : "FR";
   // swap CV + document title
   const cv = document.getElementById("cvLink");
-  cv.href = lang === "en" ? "assets/cv/CV_Franck_Nguimkeu_EN.pdf" : "assets/cv/CV_Franck_Nguimkeu_FR.pdf";
+  cv.href = lang === "en" ? "assets/cv/CV_Franck_Nguimkeu_EN.pdf?v=2" : "assets/cv/CV_Franck_Nguimkeu_FR.pdf?v=2";
   document.title = lang === "en"
     ? "Franck Nguimkeu — Data & AI Engineer"
     : "Franck Nguimkeu — Ingénieur Data & IA";
