@@ -38,7 +38,7 @@ const I18N = {
     "chain.1": "Analysis", "chain.2": "Data processing", "chain.3": "Modeling", "chain.4": "API",
     "chain.5": "Industrialization", "chain.6": "Cloud", "chain.7": "Monitoring", "chain.8": "Enablement",
     "exp.sfr.b1": "Designed and industrialized a tool detecting orientation defects (azimuth / tilt) across <strong>~30,000 5G cells</strong> — a <strong>100% software</strong> alternative to the dedicated hardware module (~€250/unit), reusing already-collected operator data.",
-    "exp.sfr.b2": "Built an end-to-end Big Data pipeline (<strong>DuckDB</strong>) fusing <strong>~1.5 billion measurements</strong> and 3 heterogeneous sources — full network audit in <strong>~15 min</strong>.",
+    "exp.sfr.b2": "Built an end-to-end Big Data pipeline (<strong>DuckDB</strong>) fusing <strong>~1.5 billion measurements</strong> and 3 heterogeneous sources — full network audit in <strong>~60 min</strong>.",
     "exp.sfr.b3": "Estimated orientation via directional statistics (triangulation of 3 methods + confidence score) and shape metrics (IoU); benchmarked deep learning models (auto-encoder, CNN), ruled out in production in favor of a more robust and explainable method.",
     "exp.sfr.b4": "Detected <strong>~4,100 real anomalies (13.8% of the network)</strong> to fix in priority — targeting field interventions, several €M of potential costs avoided, on a monthly re-runnable audit.",
     "exp.sfr.b5": "Industrialized it: <strong>Docker</strong> containerization (API, frontend, batch), <strong>GCP</strong> deployment, <strong>FastAPI / React</strong> web app, and internal team training.",
@@ -230,6 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCanvas();
   initHeroCanvas();
   initHeroVideo();
+  initConfetti();
 });
 
 /* -------- Hero background video: only show it if a real file loads -------- */
@@ -471,4 +472,74 @@ function initMedia() {
       });
     }
   });
+}
+
+/* -------- 9. Welcome confetti (tech-themed, once per visitor) -------- */
+function initConfetti() {
+  try {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (localStorage.getItem("fnz_confetti_v1")) return;
+    localStorage.setItem("fnz_confetti_v1", "1");
+  } catch (e) { /* localStorage indispo : on joue quand meme une fois */ }
+
+  const GLYPHS = ["\u26A1","\uD83E\uDD16","\uD83D\uDCCA","\uD83E\uDDE0","\uD83D\uDCBE","\uD83D\uDCC8","\uD83D\uDD17","\u2699\uFE0F","\u2728","\uD83D\uDE80","\uD83D\uDCE1","\u2601\uFE0F","\uD83D\uDCA1","\uD83D\uDD2E","\uD83D\uDEF0\uFE0F"];
+  const TOKENS = ["</>", "{ }", "AI", "ML", "01", "\u03BB", "\u03A3", "Py", "f(x)", "GPU"];
+  const GOLD = ["#f5b820", "#ffd76a", "#e59400", "#ffe9c4"];
+  const ACCENT = ["#7c6cff", "#22d3ee", "#34d399", "#f472b6", "#ff8a3d"];
+
+  const canvas = document.createElement("canvas");
+  canvas.setAttribute("aria-hidden", "true");
+  Object.assign(canvas.style, { position: "fixed", inset: "0", width: "100%", height: "100%", pointerEvents: "none", zIndex: "250" });
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext("2d");
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  let W, H;
+  function size() { W = window.innerWidth; H = window.innerHeight; canvas.width = W * DPR; canvas.height = H * DPR; ctx.setTransform(DPR, 0, 0, DPR, 0, 0); }
+  size();
+  window.addEventListener("resize", size);
+
+  const rnd = (a, b) => a + Math.random() * (b - a);
+  const pick = (a) => a[(Math.random() * a.length) | 0];
+  const N = Math.min(150, Math.max(70, Math.floor(W / 11)));
+  const pieces = [];
+  for (let i = 0; i < N; i++) {
+    const r = Math.random(); let kind, text = "", color = "";
+    if (r < 0.5) { kind = "emoji"; text = pick(GLYPHS); }
+    else if (r < 0.68) { kind = "token"; text = pick(TOKENS); color = pick(GOLD); }
+    else { kind = "rect"; color = Math.random() < 0.6 ? pick(GOLD) : pick(ACCENT); }
+    pieces.push({ kind, text, color, x: rnd(0, W), y: rnd(-H * 0.6, -10),
+      vx: rnd(-40, 40), vy: rnd(90, 230), g: rnd(120, 230),
+      size: kind === "rect" ? rnd(7, 13) : rnd(16, 30),
+      rot: rnd(0, 6.28), spin: rnd(-5, 5), sway: rnd(0.6, 1.8), swayAmp: rnd(12, 40), seed: rnd(0, 6.28) });
+  }
+
+  const DURATION = 5200, FADE = 1200, dt = 1 / 60;
+  let start = null, raf;
+  function frame(t) {
+    if (start === null) start = t;
+    const el = t - start;
+    ctx.clearRect(0, 0, W, H);
+    const fade = el > DURATION - FADE ? Math.max(0, (DURATION - el) / FADE) : 1;
+    let alive = 0;
+    for (const p of pieces) {
+      p.vy += p.g * dt;
+      p.x += (p.vx + Math.sin(el / 1000 * p.sway + p.seed) * p.swayAmp) * dt;
+      p.y += p.vy * dt; p.rot += p.spin * dt;
+      if (p.y < H + 40) alive++;
+      ctx.globalAlpha = fade;
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+      if (p.kind === "rect") { ctx.fillStyle = p.color; ctx.fillRect(-p.size / 2, -p.size * 0.33, p.size, p.size * 0.66); }
+      else {
+        ctx.font = (p.kind === "token" ? "700 " : "") + p.size + "px 'Space Grotesk', system-ui, 'Segoe UI Emoji', 'Apple Color Emoji', sans-serif";
+        ctx.textAlign = "center"; ctx.textBaseline = "middle";
+        if (p.color) ctx.fillStyle = p.color;
+        ctx.fillText(p.text, 0, 0);
+      }
+      ctx.restore();
+    }
+    ctx.globalAlpha = 1;
+    if (el < DURATION && alive > 0) raf = requestAnimationFrame(frame);
+    else { cancelAnimationFrame(raf); window.removeEventListener("resize", size); canvas.remove(); }
+  }
+  raf = requestAnimationFrame(frame);
 }
