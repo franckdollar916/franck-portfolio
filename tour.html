@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Tour vidéo — Franck Nguimkeu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+<style>
+  :root{ --gold:#f5b820; --gold-lo:#ffd76a; --ink:#07070a; }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ height:100%; background:#050507; color:#fff;
+    font-family:'Space Grotesk',system-ui,sans-serif; overflow:hidden; }
+  .wrap{ position:fixed; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; }
+  .hint{ font-size:12.5px; color:#8a8a93; letter-spacing:.04em; text-align:center; }
+  .hint b{ color:var(--gold-lo); font-weight:500; }
+  /* The 1:1 recording stage */
+  .stage{ position:relative; width:min(1080px,92vmin); height:min(1080px,92vmin);
+    border-radius:10px; overflow:hidden; background:var(--ink);
+    box-shadow:0 30px 90px -20px rgba(0,0,0,.85); }
+  .fit{ position:absolute; top:0; left:0; width:1080px; height:1080px; transform-origin:top left; }
+  .zoom{ position:absolute; inset:0; transform-origin:50% 48%; will-change:transform; }
+  iframe{ width:1080px; height:1080px; border:0; display:block; background:var(--ink); pointer-events:none; }
+  #rings{ position:absolute; inset:0; pointer-events:none; }
+  .ring{ position:absolute; border:2.5px solid var(--gold); border-radius:16px;
+    box-shadow:0 0 0 4px rgba(245,184,32,.16), 0 0 44px rgba(245,184,32,.35);
+    opacity:0; transition:opacity .45s ease, left .5s cubic-bezier(.22,1,.36,1), top .5s cubic-bezier(.22,1,.36,1),
+      width .5s cubic-bezier(.22,1,.36,1), height .5s cubic-bezier(.22,1,.36,1); }
+  .ring.on{ opacity:1; }
+  /* overlays in stage space */
+  .ovl{ position:absolute; inset:0; pointer-events:none; }
+  .vignette{ background:radial-gradient(120% 85% at 50% 42%, transparent 52%, rgba(0,0,0,.5)); }
+  .caption{ position:absolute; left:0; right:0; bottom:0; top:auto; padding:14% 7.5% 6.5%;
+    background:linear-gradient(transparent, rgba(5,5,8,.55) 42%, rgba(5,5,8,.92)); transition:opacity .4s; }
+  .cap-eyebrow{ font-size:1.55vmin; font-weight:600; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:1.3vmin; opacity:0; transition:opacity .45s ease, transform .45s ease;
+    transform:translateY(8px); }
+  .cap-text{ font-weight:600; font-size:3.15vmin; line-height:1.18; letter-spacing:-.01em; max-width:92%;
+    opacity:0; transition:opacity .45s ease .05s, transform .45s ease .05s; transform:translateY(10px); }
+  .cap-eyebrow.show,.cap-text.show{ opacity:1; transform:none; }
+  .cap-text .i{ font-family:'Instrument Serif',serif; font-style:italic; color:var(--gold-lo); font-weight:400; }
+  /* full-stage cards (intro / outro) */
+  .card{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; gap:2.4vmin; padding:10%;
+    background:radial-gradient(120% 90% at 50% 40%, #131017 0%, #09090c 55%, #060608 100%);
+    opacity:0; transition:opacity .6s ease; }
+  .card.show{ opacity:1; }
+  .card .dot{ width:1.8vmin; height:1.8vmin; border-radius:50%; background:var(--gold); box-shadow:0 0 22px var(--gold); }
+  .card .eye{ font-size:1.7vmin; letter-spacing:.24em; text-transform:uppercase; color:var(--gold); }
+  .card h1{ font-weight:600; font-size:6.6vmin; line-height:1.04; letter-spacing:-.03em; }
+  .card .i{ font-family:'Instrument Serif',serif; font-style:italic; font-weight:400; }
+  .grad{ background:linear-gradient(100deg,#ffd76a,#f5b820 45%,#e59400);
+    -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .card .url{ font-size:4.6vmin; font-weight:600; color:var(--gold); margin-top:1vmin; }
+  .card .sub{ font-size:2.5vmin; color:#d7d7df; }
+  .card .chips{ display:flex; gap:1.4vmin; flex-wrap:wrap; justify-content:center; margin-top:1.4vmin; }
+  .card .chips span{ font-size:1.7vmin; color:#d7d7df; border:1px solid rgba(255,255,255,.18);
+    padding:.7vmin 1.6vmin; border-radius:999px; }
+  .progress{ position:absolute; left:0; top:0; height:3px; width:0;
+    background:linear-gradient(90deg,#ffd76a,#f5b820); z-index:6; }
+  .controls{ display:flex; gap:10px; align-items:center; }
+  button{ font-family:inherit; font-size:13px; font-weight:600; color:#1a1500;
+    background:linear-gradient(100deg,#ffd76a,#f5b820); border:0; padding:10px 20px; border-radius:999px; cursor:pointer; }
+  button.ghost{ background:transparent; color:#d7d7df; border:1px solid rgba(255,255,255,.22); }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="hint">🎬 Enregistre uniquement <b>le carré</b> ci-dessous (OBS / Xbox Game Bar) — <b>~52 s</b>. Le texte et les boutons ici ne sont pas dans le cadre.</div>
+    <div class="stage" id="stage">
+      <div class="fit" id="fit">
+        <div class="zoom" id="zoom">
+          <iframe id="site" src="./" title="Portfolio Franck Nguimkeu" scrolling="no"></iframe>
+          <div id="rings"><div class="ring" id="ring"></div></div>
+        </div>
+      </div>
+      <div class="ovl vignette"></div>
+      <div class="ovl caption" id="capBox">
+        <div class="cap-eyebrow" id="capEye"></div>
+        <div class="cap-text" id="capText"></div>
+      </div>
+      <div class="card" id="intro">
+        <span class="dot"></span>
+        <div class="eye">Portfolio</div>
+        <h1>Franck Nguimkeu</h1>
+        <div class="grad" style="font-size:3.4vmin;font-weight:600;letter-spacing:.01em;">Ingénieur Data &amp; IA</div>
+      </div>
+      <div class="card" id="outro">
+        <h1>Du problème métier au système<br><span class="i grad">Data &amp; IA en production.</span></h1>
+        <div class="url">francknguimkeu.com</div>
+        <div class="sub">Disponible — stage de fin d'études 6 mois · ouvert au CDI</div>
+        <div class="chips"><span>Data Engineering</span><span>ML &amp; GenAI</span><span>AI Agents</span><span>MLOps</span><span>Cloud</span></div>
+      </div>
+      <div class="progress" id="prog"></div>
+    </div>
+    <div class="controls">
+      <button id="replay">↺ Rejouer</button>
+      <button class="ghost" id="restartSite">Recharger le site</button>
+    </div>
+  </div>
+
+<script>
+(function(){
+  const stage=document.getElementById('stage'), fit=document.getElementById('fit'), zoom=document.getElementById('zoom');
+  const site=document.getElementById('site'), ring=document.getElementById('ring');
+  const capBox=document.getElementById('capBox'), capEye=document.getElementById('capEye'), capText=document.getElementById('capText');
+  const intro=document.getElementById('intro'), outro=document.getElementById('outro'), prog=document.getElementById('prog');
+  const DESIGN=1080;
+  function fitStage(){ const w=stage.clientWidth; fit.style.transform='scale('+(w/DESIGN)+')'; }
+  window.addEventListener('resize', fitStage); fitStage();
+
+  let doc=null, win=null;
+  const q=(s)=>{ try{ return doc.querySelector(s); }catch(e){ return null; } };
+  const qa=(s)=>{ try{ return [...doc.querySelectorAll(s)]; }catch(e){ return []; } };
+  function eduCard(){ return qa('#experience .tl-item').find(c=>c.querySelector('[data-media="edu"]')) || null; }
+  function eduRing(){ const c=eduCard(); return c ? (c.querySelector('[data-i18n="exp.edu.b2"]')||c.querySelector('.tl-item__role')) : null; }
+  function sfrPunch(){ return q('#experience .tl-item .tl-item__punch'); }
+  function openSfrMedia(){ try{
+    const card=qa('#experience .tl-item').find(c=>c.querySelector('[data-media="sfr"]'));
+    if(!card) return; const btns=card.querySelectorAll('.ctx-toggle'); const b=btns[1];
+    const panel=card.querySelector('.media-panel');
+    if(b && panel && !panel.classList.contains('open')) b.click();
+  }catch(e){} }
+
+  const SCENES=[
+    { t:0,     card:'intro' },
+    { t:4000,  scroll:()=>0,                         align:'top',    eye:'Le pitch',
+      cap:'Du problème métier au <span class="i">système Data &amp; IA en production.</span>' },
+    { t:11000, scroll:()=>q('.stats'),               align:'center', ring:()=>q('.stats__grid'), eye:'Les preuves',
+      cap:'30&nbsp;000 cellules 5G · 1,5&nbsp;Md de mesures · ~60&nbsp;min · 100&nbsp;% logiciel' },
+    { t:19000, scroll:()=>q('#experience .tl-item'), align:'top',    ring:()=>sfrPunch(), eye:'SFR · IA-Audit Radio',
+      cap:"D'un besoin métier à une solution <span class='i'>déployée sur le cloud.</span>" },
+    { t:26000, action:openSfrMedia, scroll:()=>q('.media-panel[data-media="sfr"]'), align:'top',
+      ring:()=>q('.media-panel[data-media="sfr"] .media-imgs'), eye:'La solution', cap:'La preuve, en images.' },
+    { t:31000, scroll:()=>eduCard(),                 align:'top',    ring:()=>eduRing(), eye:'Edu-TSAI',
+      cap:'Plateforme éducative IA — <span class="i">doublement primée.</span>' },
+    { t:37000, scroll:()=>q('#skills'),              align:'top',    ring:()=>q('.skills__grid'), eye:'Compétences',
+      cap:'Data Engineering · ML &amp; GenAI · AI Agents · MLOps · Cloud' },
+    { t:44000, scroll:()=>q('.marquee'),             align:'center', eye:'En images',
+      cap:'Un parcours, des résultats.' },
+    { t:48000, card:'outro' }
+  ];
+  const TOTAL=54000, SCRUB=1400;
+  const ease=(t)=>t<0?0:t>1?1:1-Math.pow(1-t,3);
+  const clamp=(v,a,b)=>v<a?a:v>b?b:v;
+  const lerp=(a,b,t)=>a+(b-a)*t;
+
+  function yTo(e, align){
+    if(!e) return win.scrollY;
+    const r=e.getBoundingClientRect(); const top=r.top+win.scrollY;
+    if(align==='top') return Math.max(0, top-110);
+    return Math.max(0, top-(DESIGN-r.height)/2);
+  }
+
+  let started=false, t0=0, cur=-1, startScroll=0, targetScroll=0;
+
+  function enterScene(i){
+    const s=SCENES[i];
+    if(s.action) s.action();
+    // cards
+    intro.classList.toggle('show', s.card==='intro');
+    outro.classList.toggle('show', s.card==='outro');
+    const isCard=!!s.card;
+    capBox.style.opacity = isCard ? '0' : '1';
+    // caption
+    if(!isCard){
+      capEye.classList.remove('show'); capText.classList.remove('show');
+      setTimeout(()=>{ capEye.innerHTML=s.eye||''; capText.innerHTML=s.cap||'';
+        capEye.classList.add('show'); capText.classList.add('show'); }, 180);
+    }
+    // scroll targets
+    startScroll = win ? win.scrollY : 0;
+    if(s.scroll && win){ const tgt=s.scroll(); targetScroll = (typeof tgt==='number') ? tgt : yTo(tgt, s.align); }
+    else targetScroll = startScroll;
+    cur=i;
+  }
+
+  function updateRing(t){
+    const s=SCENES[cur]||{};
+    if(!s.ring || !win){ ring.classList.remove('on'); return; }
+    const e=s.ring(); if(!e){ ring.classList.remove('on'); return; }
+    const r=e.getBoundingClientRect(); const pad=10;
+    let x=r.left-pad, y=r.top-pad, w=r.width+pad*2, h=r.height+pad*2;
+    if(r.bottom<20 || r.top>DESIGN-20 || w<=0 || h<=0){ ring.classList.remove('on'); return; }
+    x=clamp(x,3,DESIGN-30); y=clamp(y,3,DESIGN-30);
+    w=Math.min(w, DESIGN-6-x); h=Math.min(h, DESIGN-6-y);
+    ring.style.left=x+'px'; ring.style.top=y+'px'; ring.style.width=w+'px'; ring.style.height=h+'px';
+    ring.classList.add('on');
+  }
+
+  function loop(now){
+    requestAnimationFrame(loop);
+    if(!started) return;
+    const t=Math.min(now - t0, TOTAL);
+    // scene index
+    let i=0; for(let k=0;k<SCENES.length;k++){ if(t>=SCENES[k].t) i=k; }
+    if(i!==cur) enterScene(i);
+    const s=SCENES[cur];
+    // scroll interpolation
+    if(win && s && s.scroll){
+      const p=ease(clamp((t - s.t)/SCRUB,0,1));
+      win.scrollTo(0, lerp(startScroll, targetScroll, p));
+    }
+    // gentle cinematic drift
+    zoom.style.transform='scale('+(1.014 + 0.014*Math.sin(t/6500))+')';
+    updateRing(t);
+    prog.style.width=(t/TOTAL*100)+'%';
+  }
+  requestAnimationFrame(loop);
+
+  function start(){
+    try{ doc=site.contentDocument; win=site.contentWindow; }catch(e){ doc=null; win=null; }
+    started=true; t0=performance.now(); cur=-1;
+    if(win){ try{ win.scrollTo(0,0); }catch(e){} }
+  }
+  function begin(){ // wait a bit so fonts/anim settle
+    setTimeout(start, 900);
+  }
+  if(site.contentDocument && site.contentDocument.readyState==='complete'){ begin(); }
+  site.addEventListener('load', begin);
+
+  document.getElementById('replay').addEventListener('click', ()=>{ start(); });
+  document.getElementById('restartSite').addEventListener('click', ()=>{ started=false; site.src='./'; });
+})();
+</script>
+</body>
+</html>
